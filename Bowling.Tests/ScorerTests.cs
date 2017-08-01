@@ -48,5 +48,27 @@ namespace Bowling.Tests
 
             Assert.Equal(50, score);
         }
+
+        [Fact]
+        public void Calculate_Returns130_When9FramesAre5AndASpare()
+        {
+            var unit = new Scorer();
+            var input = new string[]{
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "-", "-",
+            };
+
+            int score = unit.Calculate(input);
+
+            Assert.Equal(130, score);
+        }
     }
 }
