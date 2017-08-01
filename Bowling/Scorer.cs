@@ -17,31 +17,33 @@ namespace Bowling
                     pins[i]= current;
                 else if (turns[i] == "/")
                     pins[i] = 10 - pins[i-1];
+                else if (turns[i] == "X")
+                    pins[i] = 10;
             }
 
             // parse into frame scores:
-            List<int> frames = new List<int>();
-            for (int i = 0; i < pins.Length; i+=2)
+            int[] frames = new int[10];
+            int turnIndex = 0;
+            for (int i = 0; i < frames.Length; i++)
             {
-                var score = pins[i] + pins [i+1];
-                // bonus for a spare:
-                if (score == 10)
-                    score += pins[i+2];
+                int[] nextPins = new int[] {
+                    turnIndex+1 < pins.Length -1 ? pins[turnIndex+1] : 0,
+                    turnIndex+2 < pins.Length -1 ? pins[turnIndex+2] : 0
+                };
+
+                bool isStrike = turns[turnIndex] == "X";
                 
-                frames.Add(score);
+                // score this frame:
+                frames[i] = pins[turnIndex] + pins[turnIndex+1];
+                // bonus for a spare/strike:
+                if (frames[i] == 10 || isStrike)
+                    frames[i] += pins[turnIndex+2];
+                
+                // only move on one turn if it is a stike:
+                turnIndex+= isStrike ? 1 : 2;
             }
 
             return frames.Sum();
         }
-
-        // class Frame {
-        //     public int FirstPins { get; set; }
-        //     public int SecondPins { get; set; }
-        //     public Frame(string first, string second) {
-
-        //     }
-
-        //     private ParsePins()
-        // }
     }
 }

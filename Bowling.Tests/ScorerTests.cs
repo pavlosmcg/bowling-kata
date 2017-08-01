@@ -70,5 +70,27 @@ namespace Bowling.Tests
 
             Assert.Equal(130, score);
         }
+
+        [Fact]
+        public void Calculate_Returns240_When9FramesAreStrikes()
+        {
+            var unit = new Scorer();
+            var input = new string[]{
+                "X",
+                "X",
+                "X",
+                "X",
+                "X",
+                "X",
+                "X",
+                "X",
+                "X",
+                "-", "-",
+            };
+
+            int score = unit.Calculate(input);
+
+            Assert.Equal(240, score);
+        }
     }
 }
