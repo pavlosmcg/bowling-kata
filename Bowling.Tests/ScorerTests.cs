@@ -92,5 +92,49 @@ namespace Bowling.Tests
 
             Assert.Equal(240, score);
         }
+
+        [Fact]
+        public void Calculate_Returns150_WhenAllFramesAre5AndASpare()
+        {
+            var unit = new Scorer();
+            var input = new string[]{
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "5", "/",
+                "5", "/", "5"
+            };
+
+            int score = unit.Calculate(input);
+
+            Assert.Equal(150, score);
+        }
+
+        [Fact]
+        public void Calculate_Returns300_ForPerfectGame()
+        {
+            var unit = new Scorer();
+            var input = new string[]{
+                "X",
+                "X",
+                "X",
+                "X",
+                "X",
+                "X",
+                "X",
+                "X",
+                "X",
+                "X", "X", "X"
+            };
+
+            int score = unit.Calculate(input);
+
+            Assert.Equal(300, score);
+        }
     }
 }

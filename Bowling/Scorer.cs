@@ -26,11 +26,6 @@ namespace Bowling
             int turnIndex = 0;
             for (int i = 0; i < frames.Length; i++)
             {
-                int[] nextPins = new int[] {
-                    turnIndex+1 < pins.Length -1 ? pins[turnIndex+1] : 0,
-                    turnIndex+2 < pins.Length -1 ? pins[turnIndex+2] : 0
-                };
-
                 bool isStrike = turns[turnIndex] == "X";
                 
                 // score this frame:
